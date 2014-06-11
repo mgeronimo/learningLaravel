@@ -29,6 +29,7 @@ class UserController extends BaseController {
     {
         $user = new User;
         $user->username = Input::get( 'username' );
+        $username = Input::get( 'username' );
         $user->email = Input::get( 'email' );
         $user->password = Input::get( 'password' );
         $user->fname = Input::get( 'fname' );
@@ -44,6 +45,13 @@ class UserController extends BaseController {
 
         if ( $user->id )
         {
+            $new_role = new Role;
+            $new_role = Role::where('name','=','member')->first();;
+            
+            $get_user = new User;
+            $get_user = User::where('username','=',$username)->first();   
+            $get_user->attachRole( $new_role );
+
                         $notice = Lang::get('confide::confide.alerts.account_created') . ' ' . Lang::get('confide::confide.alerts.instructions_sent'); 
                     
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
