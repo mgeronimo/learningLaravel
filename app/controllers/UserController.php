@@ -70,7 +70,7 @@ class UserController extends BaseController {
         // Authenticate User
         if( Confide::user() )
         {
-            return 'profile here';
+            return Redirect::to('profile');
         }
         else
         {
@@ -232,5 +232,51 @@ class UserController extends BaseController {
     {
         return View::make('dashboard');
     }
+
+    public function profile()
+    {
+        return View::make('profile');
+    }
+
+    public function getRole()
+    {
+        
+        $admin = new Role();
+        $admin->name = 'admin';
+        $admin->save();
+     
+        $member = new Role();
+        $member->name = 'member';
+        $member->save();
+
+        $create = new Permission();
+        $create->name = 'can_create';
+        $create->display_name = 'Can Create User';
+        $create->save();
+
+        $update = new Permission();
+        $update->name = 'can_update';
+        $update->display_name = 'Can Update User';
+        $update->save();
+
+        $delete = new Permission();
+        $delete->name = 'can_delete';
+        $delete->display_name = 'Can Delete User';
+        $delete->save();
+
+        $view = new Permission();
+        $view->name = 'can_view';
+        $view->display_name = 'Can View User';
+        $view->save();
+
+        $admin->attachPermission($create);
+        $admin->attachPermission($update);
+        $admin->attachPermission($delete);
+        $admin->attachPermission($view);
+        $member->attachPermission($view);
+
+        return Redirect::to('login'); 
+    }
+
 
 }
