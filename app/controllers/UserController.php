@@ -67,15 +67,14 @@ class UserController extends BaseController {
      */
     public function login()
     {
+        // Authenticate User
         if( Confide::user() )
         {
-            // If user is logged, redirect to internal 
-            // page, change it to '/admin', '/dashboard' or something
-            return Redirect::to('/');
+            return 'profile here';
         }
         else
         {
-            return View::make(Config::get('confide::login_form'));
+            return View::make('login'); 
         }
     }
 
@@ -86,8 +85,8 @@ class UserController extends BaseController {
     public function do_login()
     {
         $input = array(
-            'email'    => Input::get( 'email' ), // May be the username too
-            'username' => Input::get( 'email' ), // so we have to pass both
+            'email'    => Input::get( 'username' ),
+            'username' => Input::get( 'username' ), // so we have to pass both
             'password' => Input::get( 'password' ),
             'remember' => Input::get( 'remember' ),
         );
@@ -121,10 +120,11 @@ class UserController extends BaseController {
             {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
-
+                    
                         return Redirect::action('UserController@login')
                             ->withInput(Input::except('password'))
                 ->with( 'error', $err_msg );
+                
         }
     }
 
@@ -226,6 +226,11 @@ class UserController extends BaseController {
         Confide::logout();
         
         return Redirect::to('/');
+    }
+
+    public function dashboard()
+    {
+        return View::make('dashboard');
     }
 
 }

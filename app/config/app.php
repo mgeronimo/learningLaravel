@@ -122,8 +122,8 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-'Zizaco\Confide\ConfideServiceProvider',
-'Zizaco\Entrust\EntrustServiceProvider',
+		'Zizaco\Confide\ConfideServiceProvider',
+		'Zizaco\Entrust\EntrustServiceProvider',
 	),
 
 	/*
@@ -190,8 +190,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-'Confide' => 'Zizaco\Confide\ConfideFacade',
-'Entrust' => 'Zizaco\Entrust\EntrustFacade',
+		'Confide' => 'Zizaco\Confide\ConfideFacade',
+		'Entrust' => 'Zizaco\Entrust\EntrustFacade',
 		
 	),
 

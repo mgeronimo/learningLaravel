@@ -1,0 +1,5 @@
+@extends('layouts.login')
+
+@section('content')
+	<h3>Dashboard Here</h3>
+@stop
