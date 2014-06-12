@@ -78,7 +78,7 @@ class UserController extends BaseController {
         // Authenticate User
         if( Confide::user() )
         {
-            return Redirect::to('profile');
+            return Redirect::to('/');
         }
         else
         {

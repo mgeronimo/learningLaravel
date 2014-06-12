@@ -89,4 +89,4 @@ Route::filter('csrf', function()
 	}
 });
 
-Entrust::routeNeedsRole( '/', 'Admin', Redirect::to('login') );
+Entrust::routeNeedsRole( '/*', array('admin','member'), Redirect::to('login'),false );
