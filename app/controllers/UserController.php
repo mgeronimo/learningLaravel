@@ -28,17 +28,18 @@ class UserController extends BaseController {
     public function store()
     {
         $user = new User;
-
         $user->username = Input::get( 'username' );
         $user->email = Input::get( 'email' );
         $user->password = Input::get( 'password' );
-
+        $user->fname = Input::get( 'fname' );
+        $user->lname = Input::get( 'lname' );
+        $user->confirmed = 1;
         // The password confirmation will be removed from model
         // before saving. This field will be used in Ardent's
         // auto validation.
         $user->password_confirmation = Input::get( 'password_confirmation' );
 
-        // Save if valid. Password field will be hashed before save
+        // Save if  valid. Password field will be hashed before save
         $user->save();
 
         if ( $user->id )
