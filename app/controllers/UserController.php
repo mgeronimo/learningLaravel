@@ -18,13 +18,53 @@ class UserController extends BaseController {
      */
     public function create()
     {
-        return View::make(Config::get('confide::signup_form'));
+        return View::make("create");
     }
 
     /**
      * Stores new account
      *
      */
+
+ 
+ public function edit($id)
+    {
+        $id = Input::get('id');
+        $user = User::find($id);
+        $user->username = Input::get( 'username' );
+        $user->email = Input::get( 'email' );
+        $user->password = Input::get( 'password' );
+       
+        $cpass=Input::get('confirmpassword');
+
+        $user->fname = Input::get( 'fname' );
+        $user->lname = Input::get( 'lname' );
+      
+     if ($cpass!=$user->password)
+{
+$errors= "Passwords did not match.";
+return Redirect::back()->withInput()->with('success', $errors);
+} 
+
+if ($user->save()) {
+     $errors =  "success";
+
+return View::make('edit')->with(array( 'id', $id, 'success', $error));
+
+} 
+
+
+
+else{
+    $errors =  $user->errors()->all();
+return View::make('edit')->with(array( 'id', $id, 'success', $error));
+
+}
+
+       
+    }
+
+
     public function store()
     {
         $user = new User;

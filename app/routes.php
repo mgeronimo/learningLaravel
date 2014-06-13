@@ -13,12 +13,46 @@
 
 Route::get('/', 'UserController@dashboard');
 // Confide routes
-Route::get( 'user/edit',                 function(){
-
-return View::make('/edituser');
-
-
+/*
+Route::post( 'user/edit',                 function(){
+	$id = Input::get('id');
+return View::make(Config::get('confide::edit_form'))->with('id', $id);
 });
+*/
+
+//Route::get( 'user/edit/',                 function(){
+
+//return View::make('/test');
+
+//});
+Route::get( 'user/edit/{id}',                 function($id){
+return View::make('edit')->with('id',$id);
+//return View::make(Config::get('confide::edit_form'))->with('id', $id);
+});
+
+Route::get( 'edituser',                 function(){
+	return View::make('edituser');
+});
+
+Route::get( 'user/create',                 'UserController@create');
+Route::post('user',                        'UserController@store');
+
+Route::post( 'user/delete',                 function(){
+	$errors="User Deleted .";
+
+$id=Input::get('id');
+
+$user =User::find($id);
+$user->delete();
+Session::flash('message','Successfully deleted the user.' );
+return Redirect::to('edituser');
+});
+
+
+
+
+
+
 Route::get( 'user/create',                 'UserController@create');
 Route::post('user',                        'UserController@store');
 Route::get( 'login', ['as' => 'get_login', 'uses' => 'UserController@login']);
@@ -32,3 +66,7 @@ Route::get( 'logout',                 'UserController@logout');
 
 Route::get( 'profile', ['as' => 'get_profile', 'uses' => 'UserController@profile']);
 Route::get('create_role' , ['as'=>'get_role','uses'=>'UserController@getRole']);
+
+
+Route::patch('user/edit/{id}',['as'=>'user.update', 'uses' => 'UserController@edit']);
+

@@ -51,6 +51,7 @@ return array(
     'signup_form' =>            'confide::signup',
     'forgot_password_form' =>   'confide::forgot_password',
     'reset_password_form' =>    'confide::reset_password',
+		'edit_form' =>    'confide::edit',
 
     /*
     |--------------------------------------------------------------------------
@@ -112,6 +113,6 @@ return array(
     |
     */
     'signup_email'      => true,
-    'signup_confirm'    => true,
+    'signup_confirm'    => false,
 
 );
