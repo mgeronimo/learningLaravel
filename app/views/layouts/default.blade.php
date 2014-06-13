@@ -28,6 +28,11 @@
 				} );
 			} );
 		</script>
+
+		<style>
+			body { background-image:url('../bg.png'); }
+		}
+		</style>
 	</head>
 	<body role="document">
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -57,5 +62,4 @@
 			@yield('content')
 		</div>
 	</body>
-</body>
 </html>

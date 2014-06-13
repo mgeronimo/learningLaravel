@@ -1,8 +1,13 @@
 @extends('layouts.default')
 
 @section('content')
-	<h3>Dashboard Here</h3>
-	
+
+	<div>
+		<br>
+		<a href="{{ URL::to('user/create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Create User</a>
+		<br><br>
+	</div>
+
 	<table id="table_id" class="display">
 	    <thead>
 	        <tr>
@@ -22,7 +27,7 @@
 	            <td>d</td>
 	            <td>
 	            	<div class='btn-group'>
-						<button class='btn dropdown-toggle btn-info' data-toggle='dropdown'>Action <span class='caret'></span></button>
+						<button class='btn dropdown-toggle btn-primary' data-toggle='dropdown'>Action <span class='caret'></span></button>
 						<ul class='dropdown-menu'>
 							<li><a class='iframe btn' href='#'>Edit</a></li>
 							<li><p></p></li>
@@ -39,7 +44,7 @@
 	            <td>h</td>
 	            <td>
 	            	<div class='btn-group'>
-						<button class='btn dropdown-toggle btn-info' data-toggle='dropdown'>Action <span class='caret'></span></button>
+						<button class='btn dropdown-toggle btn-primary' data-toggle='dropdown'>Action <span class='caret'></span></button>
 						<ul class='dropdown-menu'>
 							<li><a class='iframe btn' href='#'>Edit</a></li>
 							<li><a class='iframe btn' href='#'>Delete</a></li>
