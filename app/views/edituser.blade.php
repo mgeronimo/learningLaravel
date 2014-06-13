@@ -10,7 +10,7 @@
 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-        <h4 class="modal-title">Delete Parmanently</h4>
+        <h4 class="modal-title">Delete Permanently</h4>
 
       </div>
 
@@ -86,7 +86,7 @@ User Management
 
 </form>
 
-</form>
+
 </li>
 @endforeach
 </ul>

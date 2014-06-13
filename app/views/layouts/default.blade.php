@@ -7,6 +7,8 @@
 		{{ HTML::style('css/bootstrap-theme.min.css') }}
 		{{ HTML::style('css/theme.css') }}
 		{{ HTML::style('css/signin.css') }}
+		{{ HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js') }}
+
 		{{ HTML::script('js/bootstrap.min.js') }}
 
 		{{ HTML::style('colvix/css/jquery.dataTables.css')}}

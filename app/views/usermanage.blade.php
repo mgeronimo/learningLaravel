@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-	<h3>Dashboard</h3>
+	<h3>User Management</h3>
 	
 
 
