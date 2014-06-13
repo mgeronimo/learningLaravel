@@ -29,6 +29,7 @@ class UserController extends BaseController {
     {
         $user = new User;
         $user->username = Input::get( 'username' );
+        $username = Input::get( 'username' );
         $user->email = Input::get( 'email' );
         $user->password = Input::get( 'password' );
         $user->fname = Input::get( 'fname' );
@@ -44,6 +45,13 @@ class UserController extends BaseController {
 
         if ( $user->id )
         {
+            $new_role = new Role;
+            $new_role = Role::where('name','=','member')->first();;
+            
+            $get_user = new User;
+            $get_user = User::where('username','=',$username)->first();   
+            $get_user->attachRole( $new_role );
+
                         $notice = Lang::get('confide::confide.alerts.account_created') . ' ' . Lang::get('confide::confide.alerts.instructions_sent'); 
                     
             // Redirect with success message, You may replace "Lang::get(..." for your custom message.
@@ -67,15 +75,14 @@ class UserController extends BaseController {
      */
     public function login()
     {
+        // Authenticate User
         if( Confide::user() )
         {
-            // If user is logged, redirect to internal 
-            // page, change it to '/admin', '/dashboard' or something
             return Redirect::to('/');
         }
         else
         {
-            return View::make(Config::get('confide::login_form'));
+            return View::make('login'); 
         }
     }
 
@@ -86,8 +93,8 @@ class UserController extends BaseController {
     public function do_login()
     {
         $input = array(
-            'email'    => Input::get( 'email' ), // May be the username too
-            'username' => Input::get( 'email' ), // so we have to pass both
+            'email'    => Input::get( 'username' ),
+            'username' => Input::get( 'username' ), // so we have to pass both
             'password' => Input::get( 'password' ),
             'remember' => Input::get( 'remember' ),
         );
@@ -121,10 +128,11 @@ class UserController extends BaseController {
             {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
-
+                    
                         return Redirect::action('UserController@login')
                             ->withInput(Input::except('password'))
                 ->with( 'error', $err_msg );
+                
         }
     }
 
@@ -227,5 +235,56 @@ class UserController extends BaseController {
         
         return Redirect::to('/');
     }
+
+    public function dashboard()
+    {
+        return View::make('dashboard');
+    }
+
+    public function profile()
+    {
+        return View::make('profile');
+    }
+
+    public function getRole()
+    {
+        
+        $admin = new Role();
+        $admin->name = 'admin';
+        $admin->save();
+     
+        $member = new Role();
+        $member->name = 'member';
+        $member->save();
+
+        $create = new Permission();
+        $create->name = 'can_create';
+        $create->display_name = 'Can Create User';
+        $create->save();
+
+        $update = new Permission();
+        $update->name = 'can_update';
+        $update->display_name = 'Can Update User';
+        $update->save();
+
+        $delete = new Permission();
+        $delete->name = 'can_delete';
+        $delete->display_name = 'Can Delete User';
+        $delete->save();
+
+        $view = new Permission();
+        $view->name = 'can_view';
+        $view->display_name = 'Can View User';
+        $view->save();
+
+        $admin->attachPermission($create);
+        $admin->attachPermission($update);
+        $admin->attachPermission($delete);
+        $admin->attachPermission($view);
+        $member->attachPermission($view);
+
+        return Redirect::to('login'); 
+    }
+
 
 }
