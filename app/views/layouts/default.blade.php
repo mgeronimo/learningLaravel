@@ -19,6 +19,7 @@
 		{{ HTML::script('colvix/js/dataTables.colVis.js')}}
 		{{ HTML::script('colvix/js/shCore.js')}}
 		{{ HTML::script('colvix/js/demo.js')}}
+		{{ HTML::script('js/bootstrap-dropdown.js') }}
 
 		<script type="text/javascript" language="javascript" class="init">
 			$(document).ready(function() {
