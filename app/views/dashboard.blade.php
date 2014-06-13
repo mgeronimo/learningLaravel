@@ -35,7 +35,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+        <button type="button" class="btn btn-danger" id="confirm">Delete</button>
 
       </div>
 
@@ -86,8 +86,9 @@
 <?php $users= new User; $users = DB::table('users')->get(); ?>
 @foreach ($users as $user)
 
+
 	        <tr>
-	            <td> {{ $user->username; }}</td>
+	            <td> {{ $user->id; }}</td>
 	            <td> {{ $user->lname.", ".$user->fname; }}</td>
 	            <td> {{ $user->email; }}</td>
               @if(Entrust::can('can_update') ||Entrust::can('can_delete') )
@@ -103,16 +104,11 @@
 <form method="POST" action="user/delete" id="myForm" name="myForm">
 <input type="hidden" name="id" value="{{ $user->id }}">
   <center>
- <form method="POST" action="user/delete" accept-charset="UTF-8" style="display:inline">
-<input type="hidden" name="id" value="{{ $user->id }}">
-    <button class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete this user ?">
+    <button class="iframe btn" style="background-color:transparent" type="button" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete this user ?">
 
-        <i class="glyphicon glyphicon-trash"></i> Delete
+       Delete
 
     </button>
-
-</form>
-
 </center>
 </form></li>
 						@endif
@@ -141,7 +137,7 @@
 
   });
 
-  <!-- Form confirm (yes/ok) handler, submits form -->
+
 
   $('#confirmDelete').find('.modal-footer #confirm').on('click', function(){
 
