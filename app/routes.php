@@ -13,6 +13,12 @@
 
 Route::get('/', 'AuthController@showLogin');
 // Confide routes
+Route::get( 'user/edit',                 function(){
+
+return View::make('/edituser');
+
+
+});
 Route::get( 'user/create',                 'UserController@create');
 Route::post('user',                        'UserController@store');
 Route::get( 'user/login',                  'UserController@login');

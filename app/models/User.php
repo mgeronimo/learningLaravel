@@ -19,6 +19,9 @@ use HasRole;
         'email' => 'required|email|unique:users,email',
         'password' => 'required|between:4,11|confirmed',
         'username' => 'required|alpha_num',
+        'fname' => 'required|alpha_dash',
+         'lname' => 'required|alpha_dash',
+
 
     );
 	protected $table = 'users';

@@ -7,7 +7,8 @@
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
             <span class="input-group-btn">
                 <input class="btn btn-default" type="submit" value="{{{ Lang::get('confide::confide.forgot.submit') }}}">
-            </span>
+            
+</span>
         </div>
     </div>
 
