@@ -31,7 +31,7 @@ return View::make('edit')->with('id',$id);
 });
 
 Route::get( 'edituser',                 function(){
-	return View::make('usermanage');
+	return View::make('dashboard');
 });
 
 Route::get( 'user/create',                 'UserController@create');
