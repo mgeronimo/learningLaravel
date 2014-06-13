@@ -88,8 +88,10 @@
 
 	<div>
 		<br>
+    @if(Entrust::can('can_create'))
 		<a href="{{ URL::to('user/create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Create User</a>
 		<br><br>
+    @endif
 	</div>
 
 	<table id="table_id" class="display">
@@ -98,8 +100,9 @@
 	            <th>Username</th>
 	            <th>Name</th>
 	            <th>Email</th>
+              @if(Entrust::can('can_update') || Entrust::can('can_delete'))
 	            <th>Action</th>
-
+              @endif
 	        </tr>
 	    </thead>
 
@@ -111,11 +114,15 @@
 	            <td> {{ $user->username; }}</td>
 	            <td> {{ $user->lname.", ".$user->fname; }}</td>
 	            <td> {{ $user->email; }}</td>
+              @if(Entrust::can('can_update') ||Entrust::can('can_delete') )
 	            <td>
 	            	<div class='btn-group'>
 						<button class='btn dropdown-toggle btn-primary' data-toggle='dropdown'>Action <span class='caret'></span></button>
 						<ul class='dropdown-menu'>
+              @if(Entrust::can('can_update'))
 							<li><a class='iframe btn' href='user/edit/{{$user->id}}'>Edit</a></li>
+              @endif
+              @if(Entrust::can('can_delete'))
 							<li>
 <form method="POST" action="user/delete" >
 <input type="hidden" name="id" value="{{ $user->id }}">
@@ -127,9 +134,11 @@
     </button>
 </center>
 </form></li>
-						
+						@endif
 						</ul>
 					</div>
+        </td>
+        @endif
 				</tr>
         @endforeach
 	    </tbody>
