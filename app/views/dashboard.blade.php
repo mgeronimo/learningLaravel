@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+<<<<<<< HEAD
 	<h3>Dashboard</h3>
 	
 
@@ -84,6 +85,14 @@
 <!-- Message -->
 
 
+=======
+
+	<div>
+		<br>
+		<a href="{{ URL::to('user/create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Create User</a>
+		<br><br>
+	</div>
+>>>>>>> origin/master
 
 	<table id="table_id" class="display">
 	    <thead>
@@ -106,7 +115,7 @@
 	            <td> {{ $user->email; }}</td>
 	            <td>
 	            	<div class='btn-group'>
-						<button class='btn dropdown-toggle btn-info' data-toggle='dropdown'>Action <span class='caret'></span></button>
+						<button class='btn dropdown-toggle btn-primary' data-toggle='dropdown'>Action <span class='caret'></span></button>
 						<ul class='dropdown-menu'>
 							<li><a class='iframe btn' href='user/edit/{{$user->id}}'>Edit</a></li>
 							<li><p></p></li>
@@ -126,7 +135,25 @@
 					</div>
 				</td>
 	        </tr>
+<<<<<<< HEAD
 	        @endforeach
+=======
+	        <tr>
+	            <td>e</td>
+	            <td>f</td>
+	            <td>g</td>
+	            <td>h</td>
+	            <td>
+	            	<div class='btn-group'>
+						<button class='btn dropdown-toggle btn-primary' data-toggle='dropdown'>Action <span class='caret'></span></button>
+						<ul class='dropdown-menu'>
+							<li><a class='iframe btn' href='#'>Edit</a></li>
+							<li><a class='iframe btn' href='#'>Delete</a></li>
+						</ul>
+					</div>
+				</td>
+	        </tr>
+>>>>>>> origin/master
 	    </tbody>
 	</table>
 @stop
