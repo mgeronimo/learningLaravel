@@ -44,31 +44,7 @@
   </div>
 
 </div>
-<script type="text/javascript">
 
-  $('#confirmDelete').on('show.bs.modal', function (e) {
-
-      $message = $(e.relatedTarget).attr('data-message');
-  $(this).find('.modal-body p').text($message);
-
-  $title = $(e.relatedTarget).attr('data-title');
-  $(this).find('.modal-title').text($title);
-
-      var form = $(e.relatedTarget).closest('form');
-
-      $(this).find('.modal-footer #confirm').data('form', form);
-
-  });
-
-  <!-- Form confirm (yes/ok) handler, submits form -->
-
-  $('#confirmDelete').find('.modal-footer #confirm').on('click', function(){
-
-      $(this).data('form').submit();
-
-  });
-
-</script>
 
 
 <!-- end of delete confirmation-->
@@ -124,7 +100,7 @@
               @endif
               @if(Entrust::can('can_delete'))
 							<li>
-<form method="POST" action="user/delete" >
+<form method="POST" action="user/delete" id="myForm" name="myForm">
 <input type="hidden" name="id" value="{{ $user->id }}">
   <center>
  <form method="POST" action="user/delete" accept-charset="UTF-8" style="display:inline">
@@ -148,4 +124,31 @@
         @endforeach
 	    </tbody>
 	</table>
+
+  <script type="text/javascript">
+
+  $('#confirmDelete').on('show.bs.modal', function (e) {
+
+      $message = $(e.relatedTarget).attr('data-message');
+  $(this).find('.modal-body p').text($message);
+
+  $title = $(e.relatedTarget).attr('data-title');
+  $(this).find('.modal-title').text($title);
+
+      var form = $(e.relatedTarget).closest('form');
+
+      $(this).find('.modal-footer #confirm').data('form', form);
+
+  });
+
+  <!-- Form confirm (yes/ok) handler, submits form -->
+
+  $('#confirmDelete').find('.modal-footer #confirm').on('click', function(){
+
+      //$(this).data('form').submit();
+      document.getElementById("myForm").submit();
+
+  });
+
+</script>
 @stop
