@@ -39,15 +39,15 @@ Route::post('user',                        'UserController@store');
 
 Route::post( 'user/delete',                 function(){
 	$errors="User Deleted .";
-
 $id=Input::get('id');
-
 $user =User::find($id);
+
+$assigned = Assigned::where('user_id', $id)->first();
+$assigned->delete();
 $user->delete();
 Session::flash('message','Successfully deleted the user.' );
 return Redirect::to('dashboard');
 });
-
 
 
 
