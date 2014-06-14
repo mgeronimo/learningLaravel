@@ -4,16 +4,9 @@
 	<h3>User Management</h3>
 	
 
-
-
-
-
-
 <!--
 	Delete confirmation
 -->
-
-
 
 <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
 

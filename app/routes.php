@@ -45,7 +45,7 @@ $id=Input::get('id');
 $user =User::find($id);
 $user->delete();
 Session::flash('message','Successfully deleted the user.' );
-return Redirect::to('edituser');
+return Redirect::to('dashboard');
 });
 
 

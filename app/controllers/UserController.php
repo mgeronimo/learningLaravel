@@ -27,7 +27,7 @@ class UserController extends BaseController {
      */
 
  
- public function edit($id)
+ public function edit()
     {
         $id = Input::get('id');
         $user = User::find($id);
@@ -46,23 +46,28 @@ $errors= "Passwords did not match.";
 return Redirect::back()->withInput()->with('success', $errors);
 } 
 
-if ($user->save()) {
-     $errors =  "success";
+DB::table('users')
+            ->where('id', $id)
+            ->update(array('username' => $user->username, 'email' => $user->email, 'password' => $user->password, 'fname' => $user->fname, 'lname' => $user->lname));
+ $errors =  "Successfully edited user.";
 
-return View::make('edit')->with(array( 'id', $id, 'success', $error));
+return Redirect::back()->withInput()->with('success', $errors);
+/*
+if ($user->save()) {
+     $errors =  "Successfully edited user.";
+$user->save();
+return Redirect::back()->withInput()->with('success', $errors);
 
 } 
 
-
-
 else{
-    $errors =  $user->errors()->all();
-return View::make('edit')->with(array( 'id', $id, 'success', $error));
+    $errors =  "You have entered an invalid input.";
+return Redirect::back()->withInput()->with('success', $errors);
 
 }
 
-       
-    }
+  
+  */  }
 
 
     public function store()
@@ -278,7 +283,11 @@ return View::make('edit')->with(array( 'id', $id, 'success', $error));
 
     public function dashboard()
     {
+        
+if (Auth::check())
         return View::make('dashboard');
+    else 
+        return View::make('login');
     }
 
     public function profile()

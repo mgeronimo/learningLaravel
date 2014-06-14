@@ -36,4 +36,12 @@
 	{{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
 	{{ Form::close() }}
 
+	<br>
+	<br>
+	<div>
+		<br>
+		<a href="{{ URL::to('/') }}" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Back</a>
+		<br><br>
+	</div>
+
 @stop

@@ -35,7 +35,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirm">Delete</button>
+        <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
 
       </div>
 
@@ -120,11 +120,16 @@
 <form method="POST" action="user/delete" >
 <input type="hidden" name="id" value="{{ $user->id }}">
   <center>
-    <button class="iframe btn" style="background-color:transparent" type="button" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete this user ?">
+ <form method="POST" action="user/delete" accept-charset="UTF-8" style="display:inline">
+<input type="hidden" name="id" value="{{ $user->id }}">
+    <button class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete this user ?">
 
-       Delete
+        <i class="glyphicon glyphicon-trash"></i> Delete
 
     </button>
+
+</form>
+
 </center>
 </form></li>
 						
