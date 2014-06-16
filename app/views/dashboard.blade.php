@@ -88,7 +88,7 @@
 
 
 	        <tr>
-	            <td> {{ $user->id; }}</td>
+	            <td> {{ $user->username; }}</td>
 	            <td> {{ $user->lname.", ".$user->fname; }}</td>
 	            <td> {{ $user->email; }}</td>
               @if(Entrust::can('can_update') ||Entrust::can('can_delete') )

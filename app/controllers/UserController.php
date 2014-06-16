@@ -88,7 +88,27 @@ return Redirect::back()->withInput()->with('success', $errors);
         $user->password_confirmation = Input::get( 'password_confirmation' );
 
         // Save if  valid. Password field will be hashed before save
-        $user->save();
+        
+        $notice = "";
+        $det = 0;
+        $fname = $user->fname;
+        $lname = $user->lname;
+
+        if(ctype_alpha(str_replace(' ','',$fname)))
+            $det++;
+        else
+            $notice .= "\n First Name cannot containt special characters.";
+
+        if(ctype_alpha(str_replace(' ','',$lname)))
+            $det++;
+        else
+            $notice .= "\n Last Name cannot contain special characters.";
+        
+        if($det == 2)
+        {
+            $user->save();
+            $det = 0;
+        }
 
         if ( $user->id )
         {
