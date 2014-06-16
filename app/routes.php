@@ -39,9 +39,9 @@ return Redirect::to('/');
 Route::get( 'user/create',                 'UserController@create');
 Route::post('user',                        'UserController@store');
 
-Route::post( 'deluser/user/delete',                 function(){
+Route::post( 'user/delete',                 function(){
 	$errors="User Deleted .";
-$id=Input::get('id');
+$id=Input::get('hide');
 $user =User::find($id);
 
 $assigned = Assigned::where('user_id', $id)->first();
@@ -49,7 +49,7 @@ $assigned->delete();
 $user->delete();
 Session::flash('message','Successfully deleted the user.' );
 return Redirect::to('/');
-
+//return $id;
 });
 
 
