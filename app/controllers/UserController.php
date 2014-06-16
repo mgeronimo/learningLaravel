@@ -128,7 +128,13 @@ return Redirect::back()->withInput()->with('success', $errors);
         if ( $user->id )
         {
             $new_role = new Role;
-            $new_role = Role::where('name','=','member')->first();;
+
+                $user->utype = Input::get('utype');
+
+                if($user->utype == 1) 
+                    $new_role = Role::where('name','=','admin')->first();
+                else
+                    $new_role = Role::where('name','=','member')->first();
             
             $get_user = new User;
             $get_user = User::where('username','=',$username)->first();   

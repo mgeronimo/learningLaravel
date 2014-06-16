@@ -32,6 +32,7 @@
             <label for="email">Email <small>{{ Lang::get('confide::confide.signup.confirmation_required') }}</small></label>
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
         </div>
+
         <div class="form-group">
             <label for="password">{{{ Lang::get('confide::confide.password') }}}</label>
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password') }}}" type="password" name="password" id="password">
@@ -39,6 +40,14 @@
         <div class="form-group">
             <label for="password_confirmation">{{{ Lang::get('confide::confide.password_confirmation') }}}</label>
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" type="password" name="password_confirmation" id="password_confirmation">
+        </div>
+
+        <div class="form-group">
+            <label for="utype">User Type</label>
+            <select class="form-control" name="utype">
+                <option value="1">Admin</option>
+                <option value="2">Member</option>
+            </select>
         </div>
 
         <div class="form-actions form-group">
