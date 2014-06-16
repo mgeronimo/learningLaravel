@@ -85,7 +85,12 @@
 	    <tbody>
 <?php $users= new User; $users = DB::table('users')->get(); ?>
 @foreach ($users as $user)
+<?php  
 
+$assigned = Assigned::where('user_id', $user->id)->first();
+if ($assigned->role_id==1)
+continue;
+?>
 
 	        <tr>
 	            <td> {{ $user->username; }}</td>

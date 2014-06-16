@@ -2,8 +2,8 @@
 @section('content')
 <?php $success = Session::get('success') ?>
 @if($success)
-    <div class="alert-box success">
-        <h2>{{ $success }}</h2>
+            <div class="alert alert-error alert-danger">
+        <h4>{{ $success }}</h4>
     </div>
 @endif
 
@@ -13,35 +13,50 @@
 <br>
 
 {{ Form::open(['method' => 'PATCH', 'route' => 'user.update'])}}
-<h3>Username</h3>
-{{Form::text('username', $user->username,  array('required'=>'required'))}}
 
-<h3>First Name</h3>
-{{Form::text('fname', $user->fname,  array('required'=>'required')) }}
 
-<h3>Last Name </h3>
-{{Form::text('lname', $user->lname,  array('required'=>'required')) }}
+ <div class="form-group">
+            <label for="fname">Username</label>
+{{Form::text('username', $user->username,  array('required'=>'required', 'class'=>'form-control'))}}
+</div>
+ <div class="form-group">
+            <label for="fname">First Name</label>
 
-<h3>Email</h3>
-{{Form::email('email', $user->email,  array('required'=>'required')) }}
+{{Form::text('fname', $user->fname,  array('required'=>'required', 'class'=>'form-control')) }}
+</div>
+
+ <div class="form-group">
+            <label for="fname">Lastname</label>
+
+{{Form::text('lname', $user->lname,  array('required'=>'required', 'class'=>'form-control')) }}
+</div>
+
+ <div class="form-group">
+            <label for="fname">Email</label>
+{{Form::email('email', $user->email,  array('required'=>'required', 'class'=>'form-control')) }}
+</div>
 
 {{Form::hidden('id', $user->id,  array('required'=>'required')) }}
-<h3>Password</h3>
-{{Form::password('password',  array('required'=>'required')) }}
+ <div class="form-group">
+            <label for="fname">Password</label>
 
-<h3>Confirm Password</h3>
-{{Form::password('confirmpassword',  array('required'=>'required'))}}
+{{Form::password('password',  array('required'=>'required', 'class'=>'form-control')) }}
+</div>
+ <div class="form-group">
+            <label for="fname">Confirm Password</label>
+{{Form::password('confirmpassword',  array('required'=>'required', 'class'=>'form-control'))}}
+</div>
 <br>
 <br>
 	{{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
 	{{ Form::close() }}
 
-	<br>
-	<br>
+	
 	<div>
-		<br>
+	<br>
+	<br>
 		<a href="{{ URL::to('/') }}" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Back</a>
-		<br><br>
+
 	</div>
 
 @stop

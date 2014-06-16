@@ -48,28 +48,39 @@ $errors= "Passwords did not match.";
 return Redirect::back()->withInput()->with('success', $errors);
 } 
 
+
+   $not = " ";
+        $det = 0;
+        $fname = $user->fname;
+        $lname = $user->lname;
+
+        if(ctype_alpha(str_replace(' ','',$fname)))
+            $det++;
+        else
+            $not .= "\n First Name cannot containt special characters.";
+
+        if(ctype_alpha(str_replace(' ','',$lname)))
+            $det++;
+        else
+            $not .= "\n Last Name cannot contain special characters.";
+        
+        if($det == 2)
+        {
+            $user->save();
+            $det = 0;
+        }
+
+        else 
+             return Redirect::back()->withInput()->with('success', $not);
+
+
 DB::table('users')
             ->where('id', $id)
             ->update(array('username' => $user->username, 'email' => $user->email, 'password' => $user->password, 'fname' => $user->fname, 'lname' => $user->lname));
  $errors =  "Successfully edited user.";
 
 return Redirect::back()->withInput()->with('success', $errors);
-/*
-if ($user->save()) {
-     $errors =  "Successfully edited user.";
-$user->save();
-return Redirect::back()->withInput()->with('success', $errors);
-
-} 
-
-else{
-    $errors =  "You have entered an invalid input.";
-return Redirect::back()->withInput()->with('success', $errors);
-
-}
-
-  
-  */  }
+  }
 
 
     public function store()
@@ -89,7 +100,7 @@ return Redirect::back()->withInput()->with('success', $errors);
 
         // Save if  valid. Password field will be hashed before save
         
-        $notice = "";
+        $not = " ";
         $det = 0;
         $fname = $user->fname;
         $lname = $user->lname;
@@ -97,18 +108,22 @@ return Redirect::back()->withInput()->with('success', $errors);
         if(ctype_alpha(str_replace(' ','',$fname)))
             $det++;
         else
-            $notice .= "\n First Name cannot containt special characters.";
+            $not .= "\n First Name cannot containt special characters.";
 
         if(ctype_alpha(str_replace(' ','',$lname)))
             $det++;
         else
-            $notice .= "\n Last Name cannot contain special characters.";
+            $not .= "\n Last Name cannot contain special characters.";
         
         if($det == 2)
         {
             $user->save();
             $det = 0;
         }
+
+        else 
+               return Redirect::action('UserController@create')
+                            ->withInput(Input::except('password'))->with('notice', $not);
 
         if ( $user->id )
         {
@@ -299,8 +314,8 @@ return Redirect::back()->withInput()->with('success', $errors);
     public function logout()
     {
         Confide::logout();
-        
-        return Redirect::to('/');
+     $logmsg="You have Successfully logged out.";   
+        return Redirect::to('/login')->with('error', $logmsg);
     }
 
     public function dashboard()

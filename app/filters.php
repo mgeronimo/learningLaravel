@@ -43,7 +43,8 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			$logmsg="Please log in first.";
+			return Redirect::guest('login')->with('success', $logmsg);
 		}
 	}
 });

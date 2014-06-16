@@ -108,9 +108,7 @@
 <input type="hidden" name="id" value="{{ $user->id }}">
   <center>
     <button class="iframe btn" style="background-color:transparent" type="button" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete this user ?">
-
        Delete
-
     </button>
 </center>
 </form></li>
