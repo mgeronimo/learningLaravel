@@ -91,3 +91,6 @@ Route::filter('csrf', function()
 });
 
 Entrust::routeNeedsRole( '/*', array('admin','member'), Redirect::to('login'),false );
+Entrust::routeNeedsRole( 'user/create', array('admin'), Redirect::to('/') );
+Entrust::routeNeedsRole( 'user/edit/*', array('admin'), Redirect::to('/') );
+Entrust::routeNeedsRole( 'user/delete', array('admin'), Redirect::to('/') );
