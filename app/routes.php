@@ -27,17 +27,19 @@ return View::make(Config::get('confide::edit_form'))->with('id', $id);
 //});
 Route::get( 'user/edit/{id}',                 function($id){
 return View::make('edit')->with('id',$id);
-//return View::make(Config::get('confide::edit_form'))->with('id', $id);
+});
+Route::get( 'deluser/{id}',                 function($id){
+return View::make('deluser')->with('id',$id);
 });
 
 Route::get( 'edituser',                 function(){
-	return View::make('dashboard');
+return Redirect::to('/');
 });
 
 Route::get( 'user/create',                 'UserController@create');
 Route::post('user',                        'UserController@store');
 
-Route::post( 'user/delete',                 function(){
+Route::post( 'deluser/user/delete',                 function(){
 	$errors="User Deleted .";
 $id=Input::get('id');
 $user =User::find($id);
@@ -46,7 +48,8 @@ $assigned = Assigned::where('user_id', $id)->first();
 $assigned->delete();
 $user->delete();
 Session::flash('message','Successfully deleted the user.' );
-return Redirect::to('dashboard');
+return Redirect::to('/');
+
 });
 
 

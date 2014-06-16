@@ -40,6 +40,8 @@ class UserController extends BaseController {
         $user->fname = Input::get( 'fname' );
         $user->lname = Input::get( 'lname' );
       
+    
+
      if ($cpass!=$user->password)
 {
 $errors= "Passwords did not match.";
